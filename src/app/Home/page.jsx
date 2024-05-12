@@ -9,7 +9,7 @@ const ContactList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/NewEntry/index.js');
+        const response = await fetch('/api/newEntry/index.js');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

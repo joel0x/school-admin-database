@@ -22,7 +22,7 @@ export default function ContactForm() {
 
     console.log("Form Data: ", formData);
 
-    const res = await fetch("api/NewEntry", {
+    const res = await fetch("api/newEntry", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

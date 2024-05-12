@@ -1,4 +1,4 @@
-// api/NewEntry/index.js
+// api/newEntry/index.js
 
 import connectDB from "../../../lib/mongodb";
 import Contact from "../../../models/newEntry";
