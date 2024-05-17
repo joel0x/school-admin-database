@@ -5,23 +5,28 @@ import FormInput from "./_components/FormInput";
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     fullname: "",
-    email: "",
-    std: "",
+    std: null,
     sec: "",
-    sex: "",
+    gender: "",
     dob: "",
     roll: "",
     admno: "",
+    totAmt: null,
+    pendingAmt:null
   });
 
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState(false);
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Check if form data is valid
+   r
+  
     console.log("Form Data: ", formData);
-
+  
     const res = await fetch("api/newEntry", {
       method: "POST",
       headers: {
@@ -29,25 +34,26 @@ export default function ContactForm() {
       },
       body: JSON.stringify(formData),
     });
-
+  
     const { msg, success } = await res.json();
     setError(msg);
     setSuccess(success);
-
+  
     if (success) {
       setFormData({
         fullname: "",
-        email: "",
-        std: "",
+        std: null,
         sec: "",
-        sex: "",
+        gender: "",
         dob: "",
         roll: "",
         admno: "",
+        totAmt: null,
       });
     }
-  };
+  };  
 
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -68,14 +74,6 @@ export default function ContactForm() {
         />
 
         <FormInput
-          label="Email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          placeholder="john@gmail.com"
-        />
-
-        <FormInput
           label="Std"
           name="std"
           value={formData.std}
@@ -84,11 +82,11 @@ export default function ContactForm() {
         />
 
         <FormInput
-          label="Sex"
-          name="sex"
-          value={formData.sex}
+          label="Gender"
+          name="gender"
+          value={formData.gender}
           onChange={handleInputChange}
-          placeholder="Sex"
+          placeholder="Gender"
         />
 
         <FormInput
@@ -122,6 +120,20 @@ export default function ContactForm() {
           onChange={handleInputChange}
           placeholder="Admission Number"
         />
+        <FormInput
+          label="Total Fees"
+          name="totAmt"
+          value={formData.totAmt}
+          onChange={handleInputChange}
+          placeholder="Total Fees"
+        />
+         <FormInput
+          label="Pending Amount"
+          name="pendingAmt"
+          value={formData.pendingAmt}
+          onChange={handleInputChange}
+          placeholder="Pending Amount"
+        />
 
         <button className="bg-green-700 p-3 text-white font-bold" type="submit">
           Send
@@ -133,9 +145,8 @@ export default function ContactForm() {
           error.map((msg, index) => (
             <div
               key={index}
-              className={`${
-                success ? "text-green-800" : "text-red-600"
-              } px-5 py-2`}
+              className={`${success ? "text-green-800" : "text-red-600"
+                } px-5 py-2`}
             >
               {msg}
             </div>

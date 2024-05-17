@@ -9,7 +9,7 @@ const ContactList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/newEntry/index.js');
+        const response = await fetch('/api/newEntry');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -40,8 +40,6 @@ const ContactList = () => {
         {contacts.map(contact => (
           <li key={contact._id}>
             <div>Full Name: {contact.fullname}</div>
-            <div>Email: {contact.email}</div>
-            <div>Message: {contact.message}</div>
           </li>
         ))}
       </ul>

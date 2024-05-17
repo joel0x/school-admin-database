@@ -8,48 +8,45 @@ const contactSchema = new Schema({
     minLength: [2, "Name must be larger than 2 characters"],
     maxLength: [50, "Name must be lesser than 50 characters"],
   },
-
-  email: {
-    type: String,
-    required: [true, "Email is required."],
-    match: [/^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/i, "Invalid email address"],
-  },
-
-  // message: {
-  //   type: String,
-  //   required: [true, "Message is required."],
-  // },
-
   std: {
-    type: String,
+    type: Number,
     required: [true, "Standard is required."],
   },
-
   sec: {
     type: String,
     required: [true, "Section is required."],
   },
-
-  sex: {
+  gender: {
     type: String,
-    required: [true, "Sex is required."],
+    required: [true, "Gender is required."],
+    validate: {
+      validator: function(value) {
+        return value === "male" || value === "female";
+      },
+      message: "Gender must be either 'male' or 'female'.",
+    },
   },
-
   dob: {
-    type: Date,
+    type: String,
     required: [true, "Date of birth is required."],
   },
-
   roll: {
     type: String,
     required: [true, "Roll number is required."],
   },
-
   admno: {
     type: String,
     required: [true, "Admission number is required."],
   },
-
+  totAmt: {
+    type: Number,
+    required: [true, "Total Amount is required."],
+  },
+  pendingAmt:{
+    type:Number,
+    required:[true, "Pending Amount is required"]
+  },
+  
   date: {
     type: Date,
     default: Date.now,
